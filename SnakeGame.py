@@ -2,6 +2,7 @@ import pygame
 import random
 
 pygame.init()
+pygame.display.set_caption('SnakeGame')
 snake=pygame.image.load(r'C:\Users\jagat\Desktop\snakeBody.PNG')
 food=pygame.image.load(r'C:\Users\jagat\Desktop\food2.PNG')
 font=pygame.font.SysFont(None,55)
@@ -17,8 +18,6 @@ def drawLines(surface):
         y+=20
         pygame.draw.line(surface,(50,205,50),(x,0),(x,500))
         pygame.draw.line(surface,(50,205,50),(0,y),(500,y))
-def UpdateWin(surface):
-    drawLines(surface)
 def plot_snake(snake_lst):
     for val in snake_lst:
         GameDisplay.blit(snake,val)
@@ -40,6 +39,7 @@ def GameLoop():
     while not GameExit:
         if collision:
             screen_score(f'Game Over',(255,0,0),140,100)
+            screen_score(f'Score: {score}',(0,0,0),140,200)
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     GameExit=True
@@ -94,7 +94,7 @@ def GameLoop():
             snake_lst.append([snake_x,snake_y])
             if len(snake_lst)>snake_length:
                 del snake_lst[0]
-            UpdateWin(GameDisplay)
+            drawLines(GameDisplay)
             if snake_x<0 or snake_x>480 or snake_y<0 or snake_y>480:
                 collision=True
             GameDisplay.blit(food,(food_x,food_y))
