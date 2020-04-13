@@ -3,8 +3,6 @@ import random
 pygame.init()
 food_img=pygame.image.load(r'C:\Users\jagat\Desktop\food2.PNG')
 snake_img=pygame.image.load(r'C:\Users\jagat\Desktop\snakeBody.PNG')
-#snake_head=pygame.image.load(r'C:\Users\jagat\Desktop\snakehead.PNG')
-#snake_head=pygame.transform.rotate(snake_head,180)
 #colors
 width=500
 height=400
@@ -16,8 +14,9 @@ game_width=500
 game_height=400
 #Initializing game window
 GameDisplay=pygame.display.set_mode((game_width,game_height))
-#Game variables
+#Font
 font=pygame.font.SysFont(None,55)
+#Game functions
 def screen_score(text,color,x,y):
     screen_text=font.render(text,True,color)
     GameDisplay.blit(screen_text,[x,y])
@@ -25,6 +24,7 @@ def plot_snake(snake):
     #GameDisplay.blit(snake_head,snake[-1])
     for val in snake:
         GameDisplay.blit(snake_img,val)
+ #Main game loop
 def GameLoop():
     global snake_head
     score=0
